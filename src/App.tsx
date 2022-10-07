@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./scss/main.scss";
+import Header from "./sections/Header";
+import FirstSection from "./sections/FirstSection";
+import SecondSection from "./sections/SecondSection";
+import ThirdSection from "./sections/ThirdSection";
+import Socials from "./sections/Socials";
+import Footer from "./sections/Footer";
 
 function App() {
+  const [firstSectionOffsetTop, setFirstSectionOffsetTop] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      if (position >= firstSectionOffsetTop / 2) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [firstSectionOffsetTop]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header fsOffsetTop={firstSectionOffsetTop} isScrolled={isScrolled} />
+      <main>
+        <FirstSection
+          handleOffset={(value) => setFirstSectionOffsetTop(value)}
+          isScrolled={isScrolled}
+        />
+        <SecondSection />
+        <ThirdSection />
+      </main>
+      <Socials />
+      <Footer />
     </div>
   );
 }
