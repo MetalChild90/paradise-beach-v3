@@ -1,15 +1,22 @@
-const Dots: React.FC<{
+interface Images {
+  title: string;
+  url: string;
+}
+
+interface Props {
   activeIndex: number;
   handleClick: (index: number) => void;
-  dataImages: [{ title: string; url: string }];
-}> = ({ activeIndex, handleClick, dataImages }) => {
+  dataImages: Images[];
+}
+
+const Dots = ({ activeIndex, handleClick, dataImages }: Props) => {
   return (
     <div className="all-dots">
       {dataImages.map((slide, index) => (
         <span
           key={index}
           className={`dot ${activeIndex === index && "active"}`}
-          onClick={() => handleClick.bind(null, index)}
+          onClick={() => handleClick(index)}
         ></span>
       ))}
     </div>

@@ -1,7 +1,14 @@
-const SliderContent: React.FC<{
+interface Images {
+  title: string;
+  url: string;
+}
+
+interface Props {
   activeIndex: number;
-  dataImages: [{ title: string; url: string }];
-}> = ({ activeIndex, dataImages }) => {
+  dataImages: Images[];
+}
+
+const SliderContent = ({ activeIndex, dataImages }: Props) => {
   return (
     <section>
       {dataImages.map((slide, index) => (

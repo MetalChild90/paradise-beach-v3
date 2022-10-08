@@ -1,7 +1,11 @@
 import SideNav from "./SideNav";
 import useToggle from "../../hooks/useToggle";
 
-const MenuIcon: React.FC<{ isScrolled: boolean }> = ({ isScrolled }) => {
+interface Props {
+  isScrolled: boolean;
+}
+
+const MenuIcon = ({ isScrolled }: Props) => {
   const [showSideNav, toggleShowSideNav] = useToggle(false);
 
   return (

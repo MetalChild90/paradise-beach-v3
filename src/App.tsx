@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./scss/main.scss";
 import Header from "./sections/Header";
 import FirstSection from "./sections/FirstSection";
 import SecondSection from "./sections/SecondSection";
 import ThirdSection from "./sections/ThirdSection";
 import Socials from "./sections/Socials";
 import Footer from "./sections/Footer";
+import "./scss/main.scss";
 
 function App() {
   const [firstSectionOffsetTop, setFirstSectionOffsetTop] = useState(0);
@@ -26,14 +26,15 @@ function App() {
     };
   }, [firstSectionOffsetTop]);
 
+  const handleOffset = (value: number) => {
+    setFirstSectionOffsetTop(value);
+  };
+
   return (
     <div className="App">
       <Header fsOffsetTop={firstSectionOffsetTop} isScrolled={isScrolled} />
       <main>
-        <FirstSection
-          handleOffset={(value) => setFirstSectionOffsetTop(value)}
-          isScrolled={isScrolled}
-        />
+        <FirstSection handleOffset={handleOffset} isScrolled={isScrolled} />
         <SecondSection />
         <ThirdSection />
       </main>

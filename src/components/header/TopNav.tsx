@@ -1,6 +1,10 @@
 import MenuIcon from "./MenuIcon";
 
-const TopNav: React.FC<{ isScrolled: boolean }> = ({ isScrolled }) => {
+interface Props {
+  isScrolled: boolean;
+}
+
+const TopNav = ({ isScrolled }: Props) => {
   return (
     <div className={`TopNav ${isScrolled && "scrolled"}`}>
       <MenuIcon isScrolled={isScrolled} />

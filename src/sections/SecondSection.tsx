@@ -23,6 +23,7 @@ function SecondSection() {
       reverse: true,
     },
   ];
+
   const data1 = images.slice(0, 3);
   const data2 = images.slice(3);
 

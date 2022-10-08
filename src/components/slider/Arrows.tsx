@@ -1,7 +1,9 @@
-const Arrows: React.FC<{ prevSlide: () => void; nextSlide: () => void }> = ({
-  prevSlide,
-  nextSlide,
-}) => {
+interface Props {
+  prevSlide: () => void;
+  nextSlide: () => void;
+}
+
+const Arrows = ({ prevSlide, nextSlide }: Props) => {
   return (
     <div className="arrows">
       <span className="arrow prev" onClick={prevSlide}>

@@ -10,10 +10,12 @@ const menuList = [
   "Contact Us",
 ];
 
-const SideNav: React.FC<{ showSideNav: boolean; closeSidenav: () => void }> = ({
-  showSideNav,
-  closeSidenav,
-}) => {
+interface Props {
+  showSideNav: boolean;
+  closeSidenav: () => void;
+}
+
+const SideNav = ({ showSideNav, closeSidenav }: Props) => {
   return (
     <div className={`SideNav ${showSideNav && "active"}`}>
       <div className="logo-container">

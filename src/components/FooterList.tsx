@@ -1,6 +1,8 @@
-const FooterList: React.FC<{
+interface Props {
   menuList: { title: string; features: string[] };
-}> = ({ menuList: { title, features } }) => {
+}
+
+const FooterList = ({ menuList: { title, features } }: Props) => {
   return (
     <div className="column">
       <h2>{title}</h2>

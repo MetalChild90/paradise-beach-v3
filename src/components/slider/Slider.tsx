@@ -3,10 +3,17 @@ import SliderContent from "./SliderContent";
 import Dots from "./Dots";
 import Arrows from "./Arrows";
 
-const Slider: React.FC<{
+interface Images {
+  title: string;
+  url: string;
+}
+
+interface Props {
   bigSlider: boolean;
-  dataImages: [{ title: string; url: string }];
-}> = ({ dataImages, bigSlider }) => {
+  dataImages: Images[];
+}
+
+const Slider = ({ dataImages, bigSlider }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const len = dataImages.length - 1;

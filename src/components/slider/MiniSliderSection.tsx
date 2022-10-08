@@ -1,14 +1,24 @@
 import Slider from "./Slider";
 
-const MiniSliderSection: React.FC<{
-  images: [{ title: string; url: string }];
+interface Images {
+  title: string;
+  url: string;
+}
+
+interface Props {
+  images: Images[];
   apartment: {
     name: string;
     description: string;
     features: string[];
     reverse: boolean;
   };
-}> = ({ images, apartment: { name, description, features, reverse } }) => {
+}
+
+const MiniSliderSection = ({
+  images,
+  apartment: { name, description, features, reverse },
+}: Props) => {
   return (
     <div className={`miniSliderSection ${reverse && "reverse"}`}>
       <Slider bigSlider={false} dataImages={images} />

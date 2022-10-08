@@ -1,30 +1,34 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import video from "../../assets/video.mp4";
 import Loader from "../Loader";
 import useToggle from "../../hooks/useToggle";
 
-const BgVideo: React.FC = () => {
-  const [videoLoaded, setVideoLoaded] = useToggle(false);
+const BgVideo = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const [activePlay, toggleActivePlay] = useToggle(true);
 
-  const vidRef = useRef<HTMLVideoElement>(null);
+  const vidRef = useRef<HTMLVideoElement | null>(null);
 
-  function playVideo() {
-    vidRef.current.play();
-  }
+  const playVideo = () => {
+    if (vidRef.current) {
+      vidRef.current.play();
+    }
+  };
 
-  function pauseVideo() {
-    vidRef.current.pause();
-  }
+  const pauseVideo = () => {
+    if (vidRef.current) {
+      vidRef.current.pause();
+    }
+  };
 
-  function handlePlayButton() {
+  const handlePlayButton = () => {
     if (activePlay) {
       pauseVideo();
     } else {
       playVideo();
     }
     toggleActivePlay();
-  }
+  };
 
   return (
     <>
@@ -35,9 +39,7 @@ const BgVideo: React.FC = () => {
           loop
           muted
           ref={vidRef}
-          onLoadedData={() => {
-            setVideoLoaded(true);
-          }}
+          onLoadedData={() => setVideoLoaded(true)}
         >
           <source src={video} type="video/mp4" />
         </video>

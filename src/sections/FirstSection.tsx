@@ -1,14 +1,18 @@
 import { useEffect, useRef } from "react";
 
-const FirstSection: React.FC<{
+interface Props {
   isScrolled: boolean;
-  handleOffset: (value: number) => number;
-}> = ({ handleOffset, isScrolled }) => {
-  const firestSection = useRef<HTMLDivElement>(null);
+  handleOffset: (value: number) => void;
+}
+
+const FirstSection = ({ handleOffset, isScrolled }: Props) => {
+  const firstSection = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      handleOffset(firestSection.current.offsetTop);
+      if (firstSection.current) {
+        handleOffset(firstSection.current.offsetTop);
+      }
     };
 
     handleResize();
@@ -20,7 +24,7 @@ const FirstSection: React.FC<{
   }, [handleOffset]);
 
   return (
-    <div ref={firestSection} className="FirstSection">
+    <div ref={firstSection} className="FirstSection">
       <div className="overlay">
         <div className={`info ${isScrolled && "active"}`}>
           <h3>About the Island</h3>
